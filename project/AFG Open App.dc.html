@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>body{margin:0;background:#0b0a08;font-family:Manrope,system-ui,sans-serif;color:#f4efe6}a{color:#F4B829}a:hover{color:#ffd166}*{box-sizing:border-box}::-webkit-scrollbar{width:0;height:0}input::placeholder{color:#6f6a62}@keyframes afgpulse{0%,100%{opacity:1}50%{opacity:.35}}</style>
+</helmet>
+<div style="min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;padding:32px 16px">
+<div style="width:390px;height:844px;border-radius:54px;border:11px solid #000;box-shadow:0 0 0 1px #2a2723,0 40px 80px rgba(0,0,0,.6);position:relative;overflow:hidden;background:#12100d;flex:none">
+  <div style="position:absolute;top:0;left:0;right:0;height:50px;display:flex;align-items:center;justify-content:space-between;padding:0 30px 0 34px;z-index:30;font:700 15px Manrope;color:#f4efe6;pointer-events:none">
+    <span>9:41</span>
+    <div style="position:absolute;left:50%;top:10px;transform:translateX(-50%);width:120px;height:34px;background:#000;border-radius:20px"></div>
+    <div style="display:flex;gap:6px;align-items:center"><div style="width:17px;height:11px;border-radius:2px;background:linear-gradient(90deg,#f4efe6 0 20%,transparent 20% 27%,#f4efe6 27% 47%,transparent 47% 54%,#f4efe6 54% 74%,transparent 74% 81%,#f4efe6 81%);clip-path:polygon(0 70%,20% 70%,20% 50%,27% 50%,27% 35%,54% 35%,54% 18%,81% 18%,81% 0,100% 0,100% 100%,0 100%)"></div><div style="width:25px;height:12px;border:1.5px solid rgba(244,239,230,.5);border-radius:4px;padding:1.5px"><div style="width:75%;height:100%;background:#f4efe6;border-radius:1.5px"></div></div></div>
+  </div>
+
+  <div ref="{{ scrollRef }}" style="position:absolute;top:50px;left:0;right:0;bottom:84px;overflow-y:auto">
+
+  <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+  <div style="padding:6px 20px 28px;display:flex;flex-direction:column;gap:20px">
+    <div style="display:flex;align-items:center;justify-content:space-between;height:44px">
+      <div style="display:flex;align-items:center;gap:10px">
+        <div style="width:34px;height:34px;border-radius:8px;background:#F4B829;color:#12100d;display:flex;align-items:center;justify-content:center;font:18px Anton">AFG</div>
+        <span style="font:20px Anton;letter-spacing:.5px">AFG OPEN</span>
+      </div>
+      <button onClick="{{ openRules }}" style="height:36px;padding:0 14px;border-radius:10px;border:1px solid #2e2a25;background:transparent;color:#f4efe6;font:600 13px Manrope;cursor:pointer">Rules</button>
+    </div>
+    <div style="display:flex">
+      <div style="display:flex;align-items:center;gap:8px;height:30px;padding:0 12px;border:1px solid #2e2a25;border-radius:999px;font:700 10.5px Manrope;letter-spacing:1px;color:#d9d3c9">
+        <div style="width:6px;height:6px;border-radius:50%;background:{{ pillDot }}"></div>{{ pillText }}
+      </div>
+    </div>
+    <div style="font:52px/0.98 Anton;text-transform:uppercase;letter-spacing:.3px">Step on the mat.<br><span style="color:#F4B829">Earn the podium.</span></div>
+
+    <sc-if value="{{ preEvent }}" hint-placeholder-val="{{ true }}">
+    <div style="background:#1b1916;border:1px solid #2a2723;border-radius:18px;padding:20px;display:flex;flex-direction:column;gap:16px">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <span style="font:700 10.5px Manrope;letter-spacing:1.2px;color:#a39d93">NEXT EVENT</span>
+        <span style="font:700 10px Manrope;letter-spacing:1px;color:#F4B829;background:#2a2410;padding:5px 10px;border-radius:999px">OCTOBER</span>
+      </div>
+      <div style="font:30px/1 Anton;text-transform:uppercase">AFG Open<br>International</div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px">
+        <sc-for list="{{ countdown }}" as="c" hint-placeholder-count="4">
+        <div style="background:#12100d;border:1px solid #2a2723;border-radius:10px;padding:10px 0 8px;display:flex;flex-direction:column;align-items:center;gap:2px">
+          <span style="font:26px Anton;font-variant-numeric:tabular-nums">{{ c.v }}</span>
+          <span style="font:500 10.5px Manrope;color:#a39d93">{{ c.l }}</span>
+        </div>
+        </sc-for>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px;font:500 13px Manrope;color:#d9d3c9">
+        <div style="display:flex;gap:10px;align-items:center"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#a39d93" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"></rect><path d="M3 10h18M8 3v4M16 3v4"></path></svg>[EVENT DATE]</div>
+        <div style="display:flex;gap:10px;align-items:center"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#a39d93" stroke-width="2"><circle cx="12" cy="10" r="3"></circle><path d="M12 21s7-6.5 7-11a7 7 0 0 0-14 0c0 4.5 7 11 7 11z"></path></svg>[VENUE], Bangkok</div>
+        <div style="display:flex;gap:10px;align-items:center"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#a39d93" stroke-width="2"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>Registration closes [DEADLINE]</div>
+      </div>
+      <button onClick="{{ openReg }}" style="height:50px;border:0;border-radius:12px;background:#f4efe6;color:#12100d;font:700 15px Manrope;cursor:pointer" style-active="transform:scale(.98)">Secure your spot</button>
+    </div>
+    </sc-if>
+
+    <sc-if value="{{ compDay }}" hint-placeholder-val="{{ false }}">
+    <div style="background:#1b1916;border:1px solid #2a2723;border-radius:18px;padding:20px;display:flex;flex-direction:column;gap:14px">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <span style="display:flex;align-items:center;gap:8px;font:700 10.5px Manrope;letter-spacing:1.2px;color:#ff6b57"><span style="width:7px;height:7px;border-radius:50%;background:#ff6b57;animation:afgpulse 1.4s infinite"></span>LIVE · DAY 1</span>
+        <span style="font:600 12px Manrope;color:#a39d93">6 mats running</span>
+      </div>
+      <div style="font:30px/1 Anton;text-transform:uppercase">Adult Gi<br>White &amp; Blue</div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <sc-for list="{{ liveSummary }}" as="m" hint-placeholder-count="3">
+        <div style="display:flex;align-items:center;gap:12px;background:#12100d;border:1px solid #2a2723;border-radius:10px;padding:10px 12px">
+          <span style="font:15px Anton;color:#F4B829;width:44px">MAT {{ m.n }}</span>
+          <span style="flex:1;font:600 13px Manrope;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ m.a }} vs {{ m.b }}</span>
+          <span style="font:600 12px Manrope;color:#a39d93;font-variant-numeric:tabular-nums">{{ clock }}</span>
+        </div>
+        </sc-for>
+      </div>
+      <button onClick="{{ goBrackets }}" style="height:50px;border:0;border-radius:12px;background:#f4efe6;color:#12100d;font:700 15px Manrope;cursor:pointer">Open live brackets</button>
+    </div>
+    </sc-if>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+      <sc-for list="{{ quick }}" as="q" hint-placeholder-count="4">
+      <button onClick="{{ q.onClick }}" style="text-align:left;background:#1b1916;border:1px solid #2a2723;border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:10px;color:#f4efe6;cursor:pointer;font-family:Manrope" style-active="background:#23201c">
+        <div style="width:32px;height:32px;border-radius:8px;background:#2a2410;color:#F4B829;display:flex;align-items:center;justify-content:center;font:16px Anton">{{ q.k }}</div>
+        <span style="font:700 14px Manrope">{{ q.t }}</span>
+        <span style="font:500 12px/1.4 Manrope;color:#a39d93">{{ q.d }}</span>
+      </button>
+      </sc-for>
+    </div>
+  </div>
+  </sc-if>
+
+  <sc-if value="{{ isSchedule }}" hint-placeholder-val="{{ false }}">
+  <div style="padding:6px 20px 28px;display:flex;flex-direction:column;gap:18px">
+    <div style="font:40px/1 Anton;text-transform:uppercase;padding-top:8px">Schedule</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;background:#1b1916;border:1px solid #2a2723;border-radius:12px;padding:4px">
+      <sc-for list="{{ dayTabs }}" as="d" hint-placeholder-count="2">
+      <button onClick="{{ d.onClick }}" style="height:40px;border:0;border-radius:9px;background:{{ d.bg }};color:{{ d.fg }};font:700 13px Manrope;cursor:pointer">{{ d.label }}</button>
+      </sc-for>
+    </div>
+    <div style="display:flex;flex-direction:column">
+      <sc-for list="{{ schedule }}" as="s" hint-placeholder-count="6">
+      <div style="display:grid;grid-template-columns:54px 1fr;gap:14px;padding:14px 0;border-bottom:1px solid #22201c">
+        <span style="font:18px Anton;color:{{ s.timeColor }};padding-top:1px">{{ s.t }}</span>
+        <div style="display:flex;flex-direction:column;gap:5px">
+          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+            <span style="font:700 15px Manrope">{{ s.title }}</span>
+            <sc-if value="{{ s.tag }}" hint-placeholder-val="{{ false }}"><span style="font:700 9.5px Manrope;letter-spacing:1px;padding:3px 7px;border-radius:5px;background:#26231f;color:#d9d3c9">{{ s.tag }}</span></sc-if>
+            <sc-if value="{{ s.live }}" hint-placeholder-val="{{ false }}"><span style="font:700 9.5px Manrope;letter-spacing:1px;padding:3px 7px;border-radius:5px;background:#3a1a15;color:#ff6b57">LIVE</span></sc-if>
+          </div>
+          <span style="font:500 12.5px Manrope;color:#a39d93">{{ s.sub }}</span>
+        </div>
+      </div>
+      </sc-for>
+    </div>
+    <span style="font:500 12px/1.5 Manrope;color:#6f6a62">Times are estimates. Check your mat and call time in Brackets on the day.</span>
+  </div>
+  </sc-if>
+
+  <sc-if value="{{ isDivisions }}" hint-placeholder-val="{{ false }}">
+  <div style="padding:6px 20px 28px;display:flex;flex-direction:column;gap:20px">
+    <div style="display:flex;flex-direction:column;gap:6px;padding-top:8px">
+      <div style="font:40px/1 Anton;text-transform:uppercase">Find my division</div>
+      <span style="font:500 13px Manrope;color:#a39d93">Match by style, age, belt and weight.</span>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;background:#1b1916;border:1px solid #2a2723;border-radius:12px;padding:4px">
+      <sc-for list="{{ styleTabs }}" as="d" hint-placeholder-count="2">
+      <button onClick="{{ d.onClick }}" style="height:40px;border:0;border-radius:9px;background:{{ d.bg }};color:{{ d.fg }};font:700 13px Manrope;cursor:pointer">{{ d.label }}</button>
+      </sc-for>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <span style="font:700 10.5px Manrope;letter-spacing:1.2px;color:#a39d93">AGE</span>
+      <div style="display:flex;flex-wrap:wrap;gap:8px">
+        <sc-for list="{{ ageChips }}" as="c" hint-placeholder-count="6">
+        <button onClick="{{ c.onClick }}" style="height:36px;padding:0 14px;border-radius:999px;border:1px solid {{ c.bd }};background:{{ c.bg }};color:{{ c.fg }};font:600 13px Manrope;cursor:pointer">{{ c.label }}</button>
+        </sc-for>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <span style="font:700 10.5px Manrope;letter-spacing:1.2px;color:#a39d93">BELT</span>
+      <div style="display:flex;flex-wrap:wrap;gap:8px">
+        <sc-for list="{{ beltChips }}" as="c" hint-placeholder-count="5">
+        <button onClick="{{ c.onClick }}" style="height:36px;padding:0 14px 0 10px;border-radius:999px;border:1px solid {{ c.bd }};background:{{ c.bg }};color:{{ c.fg }};font:600 13px Manrope;cursor:pointer;display:flex;align-items:center;gap:8px"><span style="width:14px;height:6px;border-radius:2px;background:{{ c.swatch }};box-shadow:0 0 0 1px rgba(0,0,0,.35)"></span>{{ c.label }}</button>
+        </sc-for>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <div style="display:flex;justify-content:space-between;align-items:baseline">
+        <span style="font:700 10.5px Manrope;letter-spacing:1.2px;color:#a39d93">WEIGHT (WITH GI)</span>
+        <span style="font:22px Anton">{{ weight }} KG</span>
+      </div>
+      <input type="range" min="{{ wMin }}" max="{{ wMax }}" step="0.5" value="{{ weight }}" onChange="{{ onWeight }}" style="width:100%;accent-color:#F4B829">
+    </div>
+    <div style="background:#F4B829;color:#12100d;border-radius:18px;padding:20px;display:flex;flex-direction:column;gap:14px">
+      <span style="font:800 10.5px Manrope;letter-spacing:1.2px">YOUR DIVISION</span>
+      <div style="font:30px/1.02 Anton;text-transform:uppercase">{{ divTitle }}</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(18,16,13,.18);border-radius:10px;overflow:hidden">
+        <div style="background:#F4B829;padding:10px 0;display:flex;flex-direction:column;gap:2px"><span style="font:20px Anton">{{ wClass }}</span><span style="font:600 11px Manrope">Weight limit</span></div>
+        <div style="background:#F4B829;padding:10px 12px;display:flex;flex-direction:column;gap:2px"><span style="font:20px Anton">{{ matchLen }}</span><span style="font:600 11px Manrope">Match length</span></div>
+        <div style="background:#F4B829;padding:10px 12px;display:flex;flex-direction:column;gap:2px"><span style="font:20px Anton">{{ entries }}</span><span style="font:600 11px Manrope">Registered</span></div>
+      </div>
+      <button onClick="{{ openReg }}" style="height:50px;border:0;border-radius:12px;background:#12100d;color:#f4efe6;font:700 15px Manrope;cursor:pointer">Register for this division →</button>
+    </div>
+  </div>
+  </sc-if>
+
+  <sc-if value="{{ isBrackets }}" hint-placeholder-val="{{ false }}">
+  <div style="padding:6px 0 28px;display:flex;flex-direction:column;gap:18px">
+    <div style="padding:8px 20px 0;display:flex;justify-content:space-between;align-items:flex-end">
+      <div style="font:40px/1 Anton;text-transform:uppercase">Live brackets</div>
+      <span style="display:flex;align-items:center;gap:6px;font:700 10.5px Manrope;letter-spacing:1px;color:#ff6b57;padding-bottom:6px"><span style="width:7px;height:7px;border-radius:50%;background:#ff6b57;animation:afgpulse 1.4s infinite"></span>LIVE</span>
+    </div>
+    <div style="display:flex;gap:8px;overflow-x:auto;padding:0 20px">
+      <sc-for list="{{ matChips }}" as="c" hint-placeholder-count="6">
+      <button onClick="{{ c.onClick }}" style="flex:none;height:38px;padding:0 16px;border-radius:10px;border:1px solid {{ c.bd }};background:{{ c.bg }};color:{{ c.fg }};font:16px Anton;letter-spacing:.5px;cursor:pointer">{{ c.label }}</button>
+      </sc-for>
+    </div>
+    <div style="margin:0 20px;background:#1b1916;border:1px solid #2a2723;border-radius:18px;overflow:hidden">
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border-bottom:1px solid #2a2723">
+        <span style="font:600 12.5px Manrope;color:#a39d93">{{ mat.div }}</span>
+        <span style="font:22px Anton;color:#F4B829;font-variant-numeric:tabular-nums">{{ clock }}</span>
+      </div>
+      <sc-for list="{{ mat.fighters }}" as="f" hint-placeholder-count="2">
+      <div style="display:grid;grid-template-columns:6px 1fr auto auto auto;gap:12px;align-items:center;padding:14px 16px 14px 0;border-bottom:1px solid #22201c">
+        <div style="height:40px;background:{{ f.color }};border-radius:0 3px 3px 0"></div>
+        <div style="display:flex;flex-direction:column;gap:2px;min-width:0"><span style="font:700 15px Manrope">{{ f.name }}</span><span style="font:500 12px Manrope;color:#a39d93">{{ f.team }}</span></div>
+        <div style="display:flex;flex-direction:column;align-items:center;width:22px"><span style="font:15px Anton;color:#d9d3c9">{{ f.adv }}</span><span style="font:600 9px Manrope;color:#6f6a62">ADV</span></div>
+        <div style="display:flex;flex-direction:column;align-items:center;width:22px"><span style="font:15px Anton;color:#d9d3c9">{{ f.pen }}</span><span style="font:600 9px Manrope;color:#6f6a62">PEN</span></div>
+        <span style="font:34px Anton;width:40px;text-align:right">{{ f.pts }}</span>
+      </div>
+      </sc-for>
+    </div>
+    <div style="padding:0 20px;display:flex;flex-direction:column;gap:10px">
+      <span style="font:700 10.5px Manrope;letter-spacing:1.2px;color:#a39d93">UP NEXT ON MAT {{ matNo }}</span>
+      <sc-for list="{{ mat.queue }}" as="q" hint-placeholder-count="3">
+      <div style="display:flex;align-items:center;gap:12px;background:#1b1916;border:1px solid #2a2723;border-radius:12px;padding:12px 14px">
+        <div style="display:flex;flex-direction:column;gap:3px;flex:1;min-width:0">
+          <span style="font:700 13.5px Manrope;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ q.a }} vs {{ q.b }}</span>
+          <span style="font:500 12px Manrope;color:#a39d93">{{ q.n }} · {{ q.div }}</span>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:flex-end;gap:2px"><span style="font:17px Anton">{{ q.call }}</span><span style="font:600 10px Manrope;color:#6f6a62">CALL TIME</span></div>
+      </div>
+      </sc-for>
+    </div>
+    <div style="padding:0 20px;display:flex;flex-direction:column;gap:10px">
+      <span style="font:700 10.5px Manrope;letter-spacing:1.2px;color:#a39d93">BRACKET · {{ mat.div }}</span>
+      <div style="display:grid;grid-template-columns:1fr 20px 1fr;align-items:center">
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <sc-for list="{{ mat.semis }}" as="m" hint-placeholder-count="2">
+          <div style="background:#1b1916;border:1px solid #2a2723;border-radius:10px;overflow:hidden">
+            <div style="padding:8px 10px;font:600 12px Manrope;color:{{ m.ac }};border-bottom:1px solid #22201c;display:flex;justify-content:space-between"><span>{{ m.a }}</span><span>{{ m.as }}</span></div>
+            <div style="padding:8px 10px;font:600 12px Manrope;color:{{ m.bc }};display:flex;justify-content:space-between"><span>{{ m.b }}</span><span>{{ m.bs }}</span></div>
+          </div>
+          </sc-for>
+        </div>
+        <div style="height:50%;border:1px solid #3a352f;border-left:0;border-radius:0 6px 6px 0;margin-right:6px"></div>
+        <div style="background:#1b1916;border:1px solid #F4B829;border-radius:10px;overflow:hidden">
+          <div style="padding:5px 10px;font:800 9.5px Manrope;letter-spacing:1px;color:#12100d;background:#F4B829">FINAL</div>
+          <div style="padding:8px 10px;font:600 12px Manrope;border-bottom:1px solid #22201c">{{ mat.final }}</div>
+          <div style="padding:8px 10px;font:600 12px Manrope;color:#6f6a62">Winner of semi 2</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </sc-if>
+
+  <sc-if value="{{ isResults }}" hint-placeholder-val="{{ false }}">
+  <div style="padding:6px 20px 28px;display:flex;flex-direction:column;gap:18px">
+    <div style="font:40px/1 Anton;text-transform:uppercase;padding-top:8px">Results</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;background:#1b1916;border:1px solid #2a2723;border-radius:12px;padding:4px">
+      <sc-for list="{{ resTabs }}" as="d" hint-placeholder-count="2">
+      <button onClick="{{ d.onClick }}" style="height:40px;border:0;border-radius:9px;background:{{ d.bg }};color:{{ d.fg }};font:700 13px Manrope;cursor:pointer">{{ d.label }}</button>
+      </sc-for>
+    </div>
+    <sc-if value="{{ resInd }}" hint-placeholder-val="{{ true }}">
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <sc-for list="{{ podiums }}" as="p" hint-placeholder-count="4">
+      <div style="background:#1b1916;border:1px solid #2a2723;border-radius:14px;padding:14px 16px;display:flex;flex-direction:column;gap:10px">
+        <span style="font:17px Anton;text-transform:uppercase;letter-spacing:.3px">{{ p.div }}</span>
+        <sc-for list="{{ p.places }}" as="r" hint-placeholder-count="3">
+        <div style="display:flex;align-items:center;gap:12px">
+          <div style="width:24px;height:24px;border-radius:50%;background:{{ r.c }};color:#12100d;display:flex;align-items:center;justify-content:center;font:13px Anton">{{ r.n }}</div>
+          <span style="font:700 13.5px Manrope;flex:1">{{ r.name }}</span>
+          <span style="font:500 12px Manrope;color:#a39d93">{{ r.team }}</span>
+        </div>
+        </sc-for>
+      </div>
+      </sc-for>
+    </div>
+    </sc-if>
+    <sc-if value="{{ resTeam }}" hint-placeholder-val="{{ false }}">
+    <div style="background:#1b1916;border:1px solid #2a2723;border-radius:14px;overflow:hidden">
+      <div style="display:grid;grid-template-columns:28px 1fr 26px 26px 26px 40px;gap:6px;padding:10px 14px;font:700 10px Manrope;letter-spacing:1px;color:#6f6a62;border-bottom:1px solid #2a2723"><span>#</span><span>TEAM</span><span style="color:#F4B829">G</span><span style="color:#C9C4BA">S</span><span style="color:#C07A45">B</span><span style="text-align:right">PTS</span></div>
+      <sc-for list="{{ teams }}" as="t" hint-placeholder-count="6">
+      <div style="display:grid;grid-template-columns:28px 1fr 26px 26px 26px 40px;gap:6px;padding:12px 14px;align-items:center;border-bottom:1px solid #22201c;font:600 13px Manrope">
+        <span style="font:16px Anton;color:{{ t.rc }}">{{ t.r }}</span><span style="font-weight:700">{{ t.name }}</span><span>{{ t.g }}</span><span>{{ t.s }}</span><span>{{ t.b }}</span><span style="text-align:right;font:16px Anton">{{ t.pts }}</span>
+      </div>
+      </sc-for>
+    </div>
+    <span style="font:500 12px/1.5 Manrope;color:#6f6a62">Gold 9 pts · Silver 3 pts · Bronze 1 pt</span>
+    </sc-if>
+  </div>
+  </sc-if>
+  </div>
+
+  <div style="position:absolute;left:0;right:0;bottom:0;height:84px;background:rgba(18,16,13,.94);border-top:1px solid #22201c;display:grid;grid-template-columns:repeat(5,1fr);padding:8px 6px 0;z-index:5">
+    <button onClick="{{ tabHome }}" style="background:none;border:0;display:flex;flex-direction:column;align-items:center;gap:4px;color:{{ tc.home }};font:600 10.5px Manrope;cursor:pointer;height:48px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"></path></svg>Home</button>
+    <button onClick="{{ tabSchedule }}" style="background:none;border:0;display:flex;flex-direction:column;align-items:center;gap:4px;color:{{ tc.schedule }};font:600 10.5px Manrope;cursor:pointer;height:48px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"></rect><path d="M3 10h18M8 3v4M16 3v4"></path></svg>Schedule</button>
+    <button onClick="{{ tabDivisions }}" style="background:none;border:0;display:flex;flex-direction:column;align-items:center;gap:4px;color:{{ tc.divisions }};font:600 10.5px Manrope;cursor:pointer;height:48px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-4-4"></path></svg>Divisions</button>
+    <button onClick="{{ tabBrackets }}" style="background:none;border:0;display:flex;flex-direction:column;align-items:center;gap:4px;color:{{ tc.brackets }};font:600 10.5px Manrope;cursor:pointer;height:48px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 5h6v5h4M4 19h6v-5h4M14 12h6"></path></svg>Brackets</button>
+    <button onClick="{{ tabResults }}" style="background:none;border:0;display:flex;flex-direction:column;align-items:center;gap:4px;color:{{ tc.results }};font:600 10.5px Manrope;cursor:pointer;height:48px"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 4h10v5a5 5 0 0 1-10 0zM12 14v4M8 21h8M7 6H4v2a3 3 0 0 0 3 3M17 6h3v2a3 3 0 0 1-3 3"></path></svg>Results</button>
+    <div style="position:absolute;bottom:8px;left:50%;transform:translateX(-50%);width:134px;height:5px;border-radius:3px;background:#f4efe6"></div>
+  </div>
+
+  <sc-if value="{{ rules }}" hint-placeholder-val="{{ false }}">
+  <div style="position:absolute;inset:0;background:#12100d;z-index:20;padding:62px 20px 30px;overflow-y:auto;display:flex;flex-direction:column;gap:20px">
+    <div style="display:flex;justify-content:space-between;align-items:center">
+      <div style="font:40px/1 Anton;text-transform:uppercase">Rules &amp; guides</div>
+      <button onClick="{{ closeRules }}" style="width:40px;height:40px;border-radius:50%;border:1px solid #2e2a25;background:#1b1916;color:#f4efe6;font:600 18px Manrope;cursor:pointer">×</button>
+    </div>
+    <div style="background:#1b1916;border:1px solid #2a2723;border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:10px">
+      <span style="font:700 10.5px Manrope;letter-spacing:1.2px;color:#a39d93">SCORING</span>
+      <sc-for list="{{ scoring }}" as="s" hint-placeholder-count="6">
+      <div style="display:flex;justify-content:space-between;align-items:center;font:600 14px Manrope"><span>{{ s.l }}</span><span style="font:20px Anton;color:#F4B829">{{ s.p }}</span></div>
+      </sc-for>
+    </div>
+    <div style="background:#1b1916;border:1px solid #2a2723;border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:10px">
+      <span style="font:700 10.5px Manrope;letter-spacing:1.2px;color:#a39d93">WEIGH-IN</span>
+      <span style="font:500 14px/1.55 Manrope;color:#d9d3c9;text-wrap:pretty">Weigh in once, immediately before your first match. Gi athletes weigh in wearing their gi. Missing weight means disqualification from your weight division.</span>
+    </div>
+    <div style="background:#1b1916;border:1px solid #2a2723;border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:10px">
+      <span style="font:700 10.5px Manrope;letter-spacing:1.2px;color:#a39d93">MATCH LENGTH (ADULT)</span>
+      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:6px">
+        <sc-for list="{{ lengths }}" as="l" hint-placeholder-count="5">
+        <div style="display:flex;flex-direction:column;align-items:center;gap:6px;padding:10px 0;background:#12100d;border-radius:8px"><span style="width:22px;height:7px;border-radius:2px;background:{{ l.c }}"></span><span style="font:18px Anton">{{ l.m }}</span><span style="font:600 10px Manrope;color:#a39d93">MIN</span></div>
+        </sc-for>
+      </div>
+    </div>
+  </div>
+  </sc-if>
+
+  <sc-if value="{{ regOpen }}" hint-placeholder-val="{{ false }}">
+  <div style="position:absolute;inset:0;background:#12100d;z-index:20;padding:60px 20px 30px;display:flex;flex-direction:column;gap:20px">
+    <div style="display:flex;align-items:center;justify-content:space-between">
+      <button onClick="{{ regBack }}" style="height:40px;padding:0 14px;border-radius:10px;border:1px solid #2e2a25;background:#1b1916;color:#f4efe6;font:600 13px Manrope;cursor:pointer">{{ backLabel }}</button>
+      <span style="font:700 11px Manrope;letter-spacing:1.2px;color:#a39d93">{{ stepLabel }}</span>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px">
+      <sc-for list="{{ stepBars }}" as="b" hint-placeholder-count="3"><div style="height:4px;border-radius:2px;background:{{ b.c }}"></div></sc-for>
+    </div>
+
+    <sc-if value="{{ step1 }}" hint-placeholder-val="{{ true }}">
+    <div style="display:flex;flex-direction:column;gap:16px;flex:1">
+      <div style="font:36px/1 Anton;text-transform:uppercase">Confirm your division</div>
+      <div style="background:#1b1916;border:1px solid #2a2723;border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:14px">
+        <div style="font:24px/1.05 Anton;text-transform:uppercase;color:#F4B829">{{ divTitle }}</div>
+        <sc-for list="{{ divRows }}" as="r" hint-placeholder-count="4">
+        <div style="display:flex;justify-content:space-between;font:600 14px Manrope;padding-top:10px;border-top:1px solid #22201c"><span style="color:#a39d93">{{ r.l }}</span><span>{{ r.v }}</span></div>
+        </sc-for>
+      </div>
+      <button onClick="{{ changeDivision }}" style="align-self:flex-start;background:none;border:0;padding:0;color:#F4B829;font:700 14px Manrope;cursor:pointer">Change division</button>
+      <div style="flex:1"></div>
+      <button onClick="{{ regNext }}" style="height:54px;border:0;border-radius:12px;background:#F4B829;color:#12100d;font:700 15px Manrope;cursor:pointer">Continue →</button>
+    </div>
+    </sc-if>
+
+    <sc-if value="{{ step2 }}" hint-placeholder-val="{{ false }}">
+    <div style="display:flex;flex-direction:column;gap:16px;flex:1">
+      <div style="font:36px/1 Anton;text-transform:uppercase">Athlete details</div>
+      <sc-for list="{{ fields }}" as="f" hint-placeholder-count="3">
+      <label style="display:flex;flex-direction:column;gap:7px">
+        <span style="font:700 10.5px Manrope;letter-spacing:1.2px;color:#a39d93">{{ f.label }}</span>
+        <input value="{{ f.value }}" onChange="{{ f.onChange }}" placeholder="{{ f.ph }}" type="{{ f.type }}" style="height:50px;border-radius:12px;border:1px solid {{ f.bd }};background:#1b1916;color:#f4efe6;padding:0 14px;font:600 15px Manrope;outline:none">
+        <sc-if value="{{ f.err }}" hint-placeholder-val="{{ false }}"><span style="font:600 12px Manrope;color:#ff6b57">{{ f.err }}</span></sc-if>
+      </label>
+      </sc-for>
+      <div style="flex:1"></div>
+      <button onClick="{{ regNext }}" style="height:54px;border:0;border-radius:12px;background:#F4B829;color:#12100d;font:700 15px Manrope;cursor:pointer">Review entry →</button>
+    </div>
+    </sc-if>
+
+    <sc-if value="{{ step3 }}" hint-placeholder-val="{{ false }}">
+    <div style="display:flex;flex-direction:column;gap:16px;flex:1">
+      <div style="font:36px/1 Anton;text-transform:uppercase">Review &amp; pay</div>
+      <div style="background:#1b1916;border:1px solid #2a2723;border-radius:16px;padding:18px;display:flex;flex-direction:column;gap:10px">
+        <sc-for list="{{ reviewRows }}" as="r" hint-placeholder-count="5">
+        <div style="display:flex;justify-content:space-between;gap:16px;font:600 14px Manrope"><span style="color:#a39d93">{{ r.l }}</span><span style="text-align:right">{{ r.v }}</span></div>
+        </sc-for>
+        <div style="display:flex;justify-content:space-between;align-items:baseline;padding-top:12px;border-top:1px solid #2a2723"><span style="font:700 14px Manrope">Entry fee</span><span style="font:22px Anton;color:#F4B829">[ENTRY FEE]</span></div>
+      </div>
+      <span style="font:500 12px/1.5 Manrope;color:#6f6a62">By registering you agree to the AFG Open rules and waiver. Division changes are free until [DEADLINE].</span>
+      <div style="flex:1"></div>
+      <button onClick="{{ regNext }}" style="height:54px;border:0;border-radius:12px;background:#F4B829;color:#12100d;font:700 15px Manrope;cursor:pointer">Pay &amp; register</button>
+    </div>
+    </sc-if>
+
+    <sc-if value="{{ step4 }}" hint-placeholder-val="{{ false }}">
+    <div style="display:flex;flex-direction:column;gap:18px;flex:1;justify-content:center">
+      <div style="width:64px;height:64px;border-radius:16px;background:#F4B829;color:#12100d;display:flex;align-items:center;justify-content:center"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"></path></svg></div>
+      <div style="font:52px/0.98 Anton;text-transform:uppercase">You're on<br><span style="color:#F4B829">the mat.</span></div>
+      <span style="font:500 15px/1.5 Manrope;color:#d9d3c9">{{ successText }}</span>
+      <div style="background:#1b1916;border:1px solid #2a2723;border-radius:14px;padding:14px 16px;display:flex;justify-content:space-between;align-items:center"><span style="font:600 13px Manrope;color:#a39d93">Entry ID</span><span style="font:20px Anton;letter-spacing:.5px">{{ regId }}</span></div>
+      <div style="flex:1"></div>
+      <button onClick="{{ finishReg }}" style="height:54px;border:0;border-radius:12px;background:#f4efe6;color:#12100d;font:700 15px Manrope;cursor:pointer">View schedule</button>
+    </div>
+    </sc-if>
+  </div>
+  </sc-if>
+</div>
+<span style="font:600 11px ui-monospace,Menlo,monospace;color:#6f6a62;letter-spacing:.5px">AFG OPEN · iOS PROTOTYPE</span>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;eventMode&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Pre-event&quot;,&quot;Competition day&quot;],&quot;default&quot;:&quot;Pre-event&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;registrationOpen&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;},&quot;startTab&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;home&quot;,&quot;schedule&quot;,&quot;divisions&quot;,&quot;brackets&quot;,&quot;results&quot;],&quot;default&quot;:&quot;home&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  state = { tab: this.props.startTab ?? 'home', now: Date.now(), day: 1, style: 'gi', belt: 'Blue', age: 'Adult', weight: 74, mat: 1, res: 'ind', reg: 0, rules: false, name: '', team: '', email: '', tried: false };
+  scrollRef = React.createRef();
+  start = Date.now();
+  componentDidMount() { this.t = setInterval(() => this.setState({ now: Date.now() }), 1000); }
+  componentWillUnmount() { clearInterval(this.t); }
+  componentDidUpdate(p) { if (p.startTab !== this.props.startTab && this.props.startTab) this.setTab(this.props.startTab); }
+  setTab(tab) { this.setState({ tab, rules: false }); if (this.scrollRef.current) this.scrollRef.current.scrollTop = 0; }
+
+  N = ['Krit Srisuk','Daniel Moreau','Nattapong Chai','Leo Tanaka','Sofia Reyes','Arun Patel','Mai Nguyen','Jonas Berg','Pim Wongsa','Rafael Costa','Hana Kim','Tom Walker','Chaiwat Boon','Marco Vitale','Aya Suzuki','Ben Okafor'];
+  T = ['Kinetic BJJ','Riverside Grappling','Lotus Jiu-Jitsu','Tiger Den','Northside MMA','Eastgate BJJ'];
+  BELTS = { kids: ['White','Grey','Yellow','Orange','Green'], juv: ['White','Blue','Purple'], adult: ['White','Blue','Purple','Brown','Black'] };
+  SW = { White:'#f4efe6', Grey:'#8f8a82', Yellow:'#f2cf3a', Orange:'#e8863a', Green:'#4f9a55', Blue:'#3b6fd1', Purple:'#7a4bb8', Brown:'#7a5234', Black:'#0a0a0a' };
+  LEN = { White:'5 min', Blue:'6 min', Purple:'7 min', Brown:'8 min', Black:'10 min', Grey:'4 min', Yellow:'4 min', Orange:'4 min', Green:'4 min' };
+  AGES = ['Kids','Juvenile','Adult','Master 1','Master 2','Master 3'];
+  AD = [['Rooster',57.5],['Light Feather',64],['Feather',70],['Light',76],['Middle',82.3],['Medium Heavy',88.3],['Heavy',94.3],['Super Heavy',100.5],['Ultra Heavy',999]];
+  KD = [['Mighty Mite',25],['Pee Wee',30],['Light',35],['Middle',40],['Heavy',45],['Open',999]];
+
+  beltsFor(age) { return age === 'Kids' ? this.BELTS.kids : age === 'Juvenile' ? this.BELTS.juv : this.BELTS.adult; }
+  setAge(age) {
+    const belts = this.beltsFor(age);
+    const kids = age === 'Kids';
+    this.setState(s => ({ age, belt: belts.includes(s.belt) ? s.belt : belts[0], weight: kids ? (s.weight > 60 ? 32 : s.weight) : (s.weight < 50 ? 74 : s.weight) }));
+  }
+  seg(opts, cur, fn) { return opts.map(([v, label]) => ({ label, onClick: () => fn(v), bg: v === cur ? '#f4efe6' : 'transparent', fg: v === cur ? '#12100d' : '#a39d93' })); }
+  chip(label, active, onClick, extra) { return { label, onClick, bg: active ? '#F4B829' : '#1b1916', fg: active ? '#12100d' : '#f4efe6', bd: active ? '#F4B829' : '#2e2a25', ...extra }; }
+
+  mats() {
+    const N = this.N, T = this.T;
+    const divs = ['Adult Gi · Blue · Light','Adult Gi · White · Feather','Adult Gi · Blue · Middle','Adult Gi · White · Heavy','Adult Gi · Blue · Feather','Adult Gi · White · Light'];
+    return divs.map((div, i) => {
+      const n = k => N[(i * 3 + k) % N.length], t = k => T[(i + k) % T.length];
+      return {
+        div,
+        fighters: [
+          { name: n(0), team: t(0), pts: [4, 2, 0, 6, 3, 2][i], adv: [1, 0, 1, 2, 0, 1][i], pen: [0, 1, 0, 0, 1, 0][i], color: '#f4efe6' },
+          { name: n(1), team: t(1), pts: [2, 2, 0, 0, 3, 4][i], adv: [0, 1, 0, 0, 1, 0][i], pen: [1, 0, 0, 1, 0, 0][i], color: '#3b6fd1' }
+        ],
+        queue: [0, 1, 2].map(k => ({ n: 'Match ' + (14 + i * 5 + k), div: divs[(i + k) % 6].split(' · ').slice(1).join(' · '), a: n(4 + k * 2).split(' ')[0] + ' ' + n(4 + k * 2).split(' ')[1][0] + '.', b: n(5 + k * 2).split(' ')[0] + ' ' + n(5 + k * 2).split(' ')[1][0] + '.', call: ['12:40','12:52','13:05'][k] })),
+        semis: [
+          { a: n(8), b: n(9), as: '6', bs: '0', ac: '#f4efe6', bc: '#6f6a62' },
+          { a: n(0), b: n(1), as: '•', bs: '•', ac: '#F4B829', bc: '#F4B829' }
+        ],
+        final: n(8)
+      };
+    });
+  }
+
+  renderVals() {
+    const s = this.state;
+    const compDay = (this.props.eventMode ?? 'Pre-event') === 'Competition day';
+    const regClosed = this.props.registrationOpen === false;
+    const pad = v => String(v).padStart(2, '0');
+    const target = new Date('2026-10-24T08:00:00+07:00').getTime();
+    let d = Math.max(0, Math.floor((target - s.now) / 1000));
+    const countdown = [[Math.floor(d / 86400), 'Days'], [Math.floor(d % 86400 / 3600), 'Hours'], [Math.floor(d % 3600 / 60), 'Min'], [d % 60, 'Sec']].map(([v, l]) => ({ v: pad(v), l }));
+    const el = Math.floor((s.now - this.start) / 1000), rem = 360 - (el % 360);
+    const clock = pad(Math.floor(rem / 60)) + ':' + pad(rem % 60);
+    const mats = this.mats();
+    const mat = mats[s.mat - 1];
+
+    const kids = s.age === 'Kids';
+    const table = kids ? this.KD : this.AD;
+    let idx = table.findIndex(([, l]) => s.weight <= l);
+    const [cls, lim] = table[idx];
+    const wClass = lim === 999 ? '+' + table[idx - 1][1] : '−' + lim;
+    const styleName = s.style === 'gi' ? 'Gi' : 'No-Gi';
+    const divTitle = `${s.age} ${styleName} · ${s.belt} · ${cls}`;
+    const hash = [...divTitle].reduce((a, c) => a + c.charCodeAt(0), 0);
+    const entries = 4 + (hash % 21);
+    const tab = s.tab;
+    const tc = {}; ['home','schedule','divisions','brackets','results'].forEach(k => tc[k] = k === tab ? '#F4B829' : '#8a847a');
+
+    const sched = {
+      1: [['07:00','Weigh-ins open','Registration desk · Hall A',null],['08:30','Kids','Mats 1–4','GI'],['10:30','Juvenile','Mats 1–3','GI'],['12:00','Adult · White & Blue','Mats 1–6','GI'],['15:00','Adult · Purple to Black','Mats 1–6','GI'],['17:30','Absolute','Mat 1','GI'],['18:30','Podiums','Main stage',null]],
+      2: [['07:00','Weigh-ins open','Registration desk · Hall A',null],['08:30','Kids','Mats 1–4','NO-GI'],['10:00','Masters · All belts','Mats 1–6','GI'],['12:30','Adult · Beginner & Intermediate','Mats 1–6','NO-GI'],['15:00','Adult · Advanced','Mats 1–4','NO-GI'],['17:00','Team awards','Main stage',null]]
+    };
+    const schedule = sched[s.day].map(([t, title, sub, tag], i) => { const live = compDay && s.day === 1 && i === 3; return { t, title, sub, tag, live, timeColor: live ? '#F4B829' : '#f4efe6' }; });
+
+    const P = (div, a, b, c) => ({ div, places: [[a, '#F4B829'], [b, '#C9C4BA'], [c, '#C07A45']].map(([[name, team], col], i) => ({ n: i + 1, name, team, c: col })) });
+    const N = this.N, T = this.T;
+    const podiums = [
+      P('Adult Gi · Black · Light', [N[9], T[0]], [N[3], T[2]], [N[13], T[3]]),
+      P('Adult Gi · Purple · Middle', [N[1], T[1]], [N[15], T[4]], [N[6], T[0]]),
+      P('Master 1 Gi · Brown · Heavy', [N[11], T[5]], [N[7], T[2]], [N[12], T[1]]),
+      P('Adult Gi · Blue · Feather', [N[14], T[3]], [N[4], T[0]], [N[2], T[5]])
+    ];
+    const teamsRaw = [[T[0],7,4,5],[T[2],6,5,2],[T[1],4,6,6],[T[3],4,2,7],[T[5],2,4,3],[T[4],1,3,5]];
+    const teams = teamsRaw.map(([name, g, sv, b]) => ({ name, g, s: sv, b, pts: g * 9 + sv * 3 + b })).sort((a, b) => b.pts - a.pts).map((t, i) => ({ ...t, r: i + 1, rc: i === 0 ? '#F4B829' : '#6f6a62' }));
+
+    const errs = { name: s.name.trim().length < 2 ? 'Enter your full name' : '', team: !s.team.trim() ? 'Enter your team or academy' : '', email: !/^\S+@\S+\.\S+$/.test(s.email) ? 'Enter a valid email' : '' };
+    const f = (key, label, ph, type) => ({ label, ph, type, value: s[key], onChange: e => this.setState({ [key]: e.target.value }), err: s.tried ? errs[key] : '', bd: s.tried && errs[key] ? '#ff6b57' : '#2e2a25' });
+    const divRows = [{ l: 'Style', v: styleName }, { l: 'Age', v: s.age }, { l: 'Belt', v: s.belt }, { l: 'Weight limit', v: wClass + ' kg' }];
+
+    return {
+      scrollRef: this.scrollRef, clock, countdown, preEvent: !compDay, compDay,
+      pillText: regClosed ? 'REGISTRATION CLOSED · [EVENT NAME]' : 'REGISTRATION OPEN · [EVENT NAME]',
+      pillDot: regClosed ? '#6f6a62' : '#F4B829',
+      isHome: tab === 'home', isSchedule: tab === 'schedule', isDivisions: tab === 'divisions', isBrackets: tab === 'brackets', isResults: tab === 'results',
+      tc, tabHome: () => this.setTab('home'), tabSchedule: () => this.setTab('schedule'), tabDivisions: () => this.setTab('divisions'), tabBrackets: () => this.setTab('brackets'), tabResults: () => this.setTab('results'),
+      goBrackets: () => this.setTab('brackets'),
+      liveSummary: mats.slice(0, 3).map((m, i) => ({ n: i + 1, a: m.fighters[0].name.split(' ')[0], b: m.fighters[1].name.split(' ')[0] })),
+      quick: [
+        { k: '01', t: 'Find my division', d: 'Match by belt, age and weight before you register.', onClick: () => this.setTab('divisions') },
+        { k: '02', t: 'Live brackets', d: 'See your mat, match order and call time.', onClick: () => this.setTab('brackets') },
+        { k: '03', t: 'Results & podiums', d: 'Medal results and team standings from every event.', onClick: () => this.setTab('results') },
+        { k: '04', t: 'Rules & guides', d: 'Scoring, legal techniques and weigh-in info.', onClick: () => this.setState({ rules: true }) }
+      ],
+      openRules: () => this.setState({ rules: true }), closeRules: () => this.setState({ rules: false }), rules: s.rules,
+      dayTabs: this.seg([[1, 'Day 1 · Gi'], [2, 'Day 2 · No-Gi']], s.day, v => this.setState({ day: v })), schedule,
+      styleTabs: this.seg([['gi', 'Gi'], ['nogi', 'No-Gi']], s.style, v => this.setState({ style: v })),
+      ageChips: this.AGES.map(a => this.chip(a, a === s.age, () => this.setAge(a))),
+      beltChips: this.beltsFor(s.age).map(b => this.chip(b, b === s.belt, () => this.setState({ belt: b }), { swatch: this.SW[b] })),
+      weight: s.weight.toFixed(1), wMin: kids ? 20 : 50, wMax: kids ? 60 : 120, onWeight: e => this.setState({ weight: parseFloat(e.target.value) }),
+      divTitle, wClass, matchLen: this.LEN[s.belt], entries,
+      matChips: [1, 2, 3, 4, 5, 6].map(n => this.chip('MAT ' + n, n === s.mat, () => this.setState({ mat: n }))), mat, matNo: s.mat,
+      resTabs: this.seg([['ind', 'Individual'], ['team', 'Teams']], s.res, v => this.setState({ res: v })), resInd: s.res === 'ind', resTeam: s.res === 'team', podiums, teams,
+      scoring: [['Takedown', 2], ['Sweep', 2], ['Knee on belly', 2], ['Guard pass', 3], ['Mount', 4], ['Back control', 4]].map(([l, p]) => ({ l, p })),
+      lengths: ['White', 'Blue', 'Purple', 'Brown', 'Black'].map(b => ({ c: this.SW[b], m: this.LEN[b].split(' ')[0] })),
+      regOpen: s.reg > 0, step1: s.reg === 1, step2: s.reg === 2, step3: s.reg === 3, step4: s.reg === 4,
+      openReg: () => this.setState({ reg: 1, tried: false }),
+      stepLabel: s.reg === 4 ? 'CONFIRMED' : `STEP ${s.reg} OF 3`,
+      backLabel: s.reg === 1 || s.reg === 4 ? 'Close' : '← Back',
+      stepBars: [1, 2, 3].map(n => ({ c: n <= s.reg ? '#F4B829' : '#2a2723' })),
+      regBack: () => this.setState(st => ({ reg: st.reg === 1 || st.reg === 4 ? 0 : st.reg - 1 })),
+      regNext: () => {
+        if (s.reg === 2 && (errs.name || errs.team || errs.email)) return this.setState({ tried: true });
+        this.setState({ reg: s.reg + 1 });
+      },
+      changeDivision: () => { this.setState({ reg: 0 }); this.setTab('divisions'); },
+      divRows,
+      fields: [f('name', 'FULL NAME', 'As on your ID', 'text'), f('team', 'TEAM / ACADEMY', 'e.g. Kinetic BJJ', 'text'), f('email', 'EMAIL', 'you@example.com', 'email')],
+      reviewRows: [{ l: 'Athlete', v: s.name || '—' }, { l: 'Team', v: s.team || '—' }, { l: 'Division', v: divTitle }, { l: 'Weight limit', v: wClass + ' kg' }, { l: 'Event', v: 'AFG Open International' }],
+      regId: 'AFG-' + (1000 + (hash * 7) % 9000),
+      successText: `${s.name.split(' ')[0] || 'You'} is registered for ${divTitle}. Brackets are published 48 hours before the event.`,
+      finishReg: () => { this.setState({ reg: 0 }); this.setTab('schedule'); }
+    };
+  }
+}
+</script>
+</body>
+</html>
